@@ -1,0 +1,254 @@
+/* ── INPUTS ── */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.input:focus {
+  border-color: #c9a227;
+  background: rgba(201, 162, 39, 0.05);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background 0.2s;
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+.textarea:focus {
+  border-color: #c9a227;
+  background: rgba(201, 162, 39, 0.05);
+}
+
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* ── BUTTONS ── */
+.btnGold {
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #c9a227, #d4ac2f);
+  border: none;
+  border-radius: 50px;
+  color: #080808;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.25);
+}
+
+.btnGold:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 24px rgba(201, 162, 39, 0.4);
+}
+
+.btnGold:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnGhost {
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 50px;
+  color: #c9a227;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+
+.btnGhost:hover:not(:disabled) {
+  background: rgba(201, 162, 39, 0.08);
+  border-color: rgba(201, 162, 39, 0.6);
+}
+
+.btnGhost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── LOGIN BUTTON (full width) ── */
+.loginBtn {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #c9a227, #d4ac2f);
+  border: none;
+  border-radius: 50px;
+  color: #080808;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 24px rgba(201, 162, 39, 0.3);
+}
+
+.loginBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 4px 28px rgba(201, 162, 39, 0.5);
+}
+
+.loginBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── DROP ZONE ── */
+.dropZone {
+  border: 2px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: rgba(255, 255, 255, 0.015);
+  user-select: none;
+}
+
+.dropZone:hover {
+  border-color: rgba(201, 162, 39, 0.5);
+  background: rgba(201, 162, 39, 0.04);
+}
+
+.dropZoneActive {
+  border-color: #c9a227 !important;
+  background: rgba(201, 162, 39, 0.06) !important;
+}
+
+/* ── SIDEBAR NAVIGATION ── */
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.72rem 1rem;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  font-size: 0.875rem;
+  text-align: left;
+  margin-bottom: 0.2rem;
+  transition: all 0.18s;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navBtnActive {
+  background: rgba(201, 162, 39, 0.11) !important;
+  border-color: rgba(201, 162, 39, 0.35) !important;
+  color: #c9a227 !important;
+  font-weight: 400 !important;
+}
+
+/* ── SIGN OUT ── */
+.signOutBtn {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.18s;
+  letter-spacing: 0.03em;
+}
+
+.signOutBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── TABLE ROWS ── */
+.tableRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  transition: background 0.15s;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ── ACTION BUTTONS ── */
+.editBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.35);
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn:hover {
+  color: #c9a227;
+  background: rgba(201, 162, 39, 0.1);
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.35);
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
