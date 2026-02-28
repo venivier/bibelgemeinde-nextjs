@@ -4,7 +4,7 @@ import SiteShell from '@/components/SiteShell'
 
 export const metadata: Metadata = {
   title: 'Bibelgemeinde Magdeburg',
-  description: 'Die Bibel, maßgebend fürs Leben – Bibelgemeinde Magdeburg',
+  description: 'Die Bibel. maßgebend fürs Leben – Bibelgemeinde Magdeburg',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

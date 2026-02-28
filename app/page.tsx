@@ -63,7 +63,7 @@ export default async function HomePage() {
             <span className="t2">Magdeburg</span>
           </h1>
 
-          <p className="hero-claim">»Die Bibel, maßgebend fürs Leben«</p>
+          <p className="hero-claim">»Die Bibel. maßgebend fürs Leben«</p>
 
           <div className="div-row">
             <span className="dline" />
@@ -301,7 +301,7 @@ export default async function HomePage() {
         <div className="btop" />
         <div className="bbot" />
         <Reveal>
-          <p className="bquote">»Die Bibel, maßgebend fürs <strong>Leben«</strong></p>
+          <p className="bquote">»Die Bibel. maßgebend fürs <strong>Leben«</strong></p>
         </Reveal>
         <Reveal>
           <p className="bname">Bibelgemeinde Magdeburg</p>

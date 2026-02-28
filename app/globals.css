@@ -259,6 +259,28 @@ nav {
   object-fit: contain;
 }
 
+.yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.yt-link:hover {
+  border-color: #ff0000;
+  color: #ff4444;
+  background: rgba(255, 0, 0, 0.07);
+}
+
 /* ── HERO ── */
 .hero {
   position: relative;
@@ -1224,6 +1246,18 @@ footer {
 
 .flinks a:hover {
   color: var(--gold);
+}
+
+.fyt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.3) !important;
+  transition: color 0.2s !important;
+}
+
+.fyt:hover {
+  color: #ff4444 !important;
 }
 
 .fsep {
