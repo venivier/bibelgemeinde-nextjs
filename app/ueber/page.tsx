@@ -14,6 +14,49 @@ const TABS = [
   { id: 'gottesdienste', label: 'Unser Gottesdienst' },
 ]
 
+const timeline = [
+  {
+    year: '1986',
+    title: 'Ein Gebet auf der Autobahn',
+    text: 'Bradley McKenzie, auf einer Durchreise durch Deutschland, fühlt sich auf der Autobahn nahe Magdeburg von Gott berufen. Er betet, dass Gott jemanden senden möge, das Evangelium in dieser Stadt zu verkündigen – und verpflichtet sich selbst, dorthin zu gehen, wohin der Herr ihn führen würde.',
+  },
+  {
+    year: '1993',
+    title: 'Erkundungsreisen nach Ostdeutschland',
+    text: 'Bradley McKenzie und Kevin Matthia – beide ordinierte Prediger der Mount Calvary Baptist Church in South Carolina, USA – bereisen gemeinsam Ostdeutschland, um den richtigen Standort für eine neue Gemeinde zu finden. In Beratung mit dem Evangelisten Dieter Weidensdörfer identifizieren sie Magdeburg als unterversorgtes Gebiet mit besonderem Bedarf.',
+  },
+  {
+    year: '1994',
+    title: 'Gründung in Magdeburg',
+    text: 'Beide Familien ziehen nach Magdeburg. Der Herr sorgt rasch für Wohnungen. Die ersten Gottesdienste finden in der Privatwohnung der Familie McKenzie statt – mit einem improvisierten Kanzeltisch aus einem einfachen Tisch und einer Faltbox. So beginnt die Bibelgemeinde Magdeburg.',
+  },
+  {
+    year: '1996',
+    title: 'Umzug in größere Räume',
+    text: 'Die wachsende Gemeinde zieht in ein zusammengelegtes Wohnungsquartier um. Durch das Entfernen einer Innenwand entsteht ein größerer Versammlungsraum, der der steigenden Zahl der Gottesdienstbesucher gerecht wird.',
+  },
+  {
+    year: '1998',
+    title: 'Sonntagsschule und Unterstützung für Studenten',
+    text: 'Eine zusätzliche Erdgeschosswohnung wird für den Sonntagsschulunterricht der Kinder eingerichtet. Gleichzeitig bietet sie Theologiestudenten kostenlosen Wohnraum und ermöglicht so die Unterstützung des nächsten Predigernachwuchses.',
+  },
+  {
+    year: '2007',
+    title: 'Neues Domizil in Magdeburg-Stadtfeld',
+    text: 'Die Gemeinde zieht in ihre heutigen Räumlichkeiten in der Maxim-Gorki-Straße 31/37 in Magdeburg-Stadtfeld. Die größeren Räume ermöglichen reguläre Gottesdienste, Evangelisationsveranstaltungen und Konzerte für ein breiteres Publikum.',
+  },
+  {
+    year: '2009',
+    title: 'Gebetsgemeinschaft der Männer',
+    text: 'Männer der Gemeinde beginnen mit regelmäßigen Gebetstreffen an Samstagabenden. Diese Treffen stärken das Vertrauen auf Gott – besonders in einer Zeit, in der sich mehrere Familien der Gemeinde anderweitig niederließen.',
+  },
+  {
+    year: '2014',
+    title: 'Eingetragener Verein und erste Älteste',
+    text: 'Die Bibelgemeinde Magdeburg wird offiziell als eingetragener Verein (e.V.) anerkannt. In diesem Jahr werden auch zwei Älteste eingesetzt: Alexander Mantay und Bradley McKenzie – ein wichtiger Schritt in der Reifung und Struktur der Gemeinde.',
+  },
+]
+
 function UeberContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -88,21 +131,143 @@ function UeberContent() {
           )}
 
           {activeTab === 'geschichte' && (
-            <Reveal>
-              <div className="prose-section">
-                <span className="slabel">Unsere Geschichte</span>
-                <h2 className="stitle" style={{ fontSize: '2rem', marginBottom: '1.4rem' }}>Seit 1994 in Magdeburg</h2>
-                <p className="prose">
-                  Die Bibelgemeinde Magdeburg wurde 1994 gegründet – mit dem Ziel, Gott die Ehre zu geben und auf die Bedürfnisse der Menschen mittels seines unfehlbaren Wortes, der Bibel, einzugehen. Was damals als kleine Gemeinschaft begann, ist über die Jahre gewachsen und zu einer geistlichen Heimat für viele Menschen aus Magdeburg und der Umgebung geworden.
-                </p>
-                <p className="prose" style={{ marginTop: '1rem' }}>
-                  In den vergangenen Jahren haben wir die Freude gehabt, mit Gläubigen aus diversen Ländern Gemeinschaft zu pflegen. Unsere Gemeinde ist geprägt von einer herzlichen Atmosphäre, in der Menschen jeden Hintergrunds willkommen sind – ob alteingesessen oder neu in der Stadt, ob Suchende oder bereits überzeugte Christen.
-                </p>
-                <p className="prose" style={{ marginTop: '1rem' }}>
-                  Gottesdienste werden auf Deutsch gehalten. Eine Übersetzung ins Englische und Russische wird angeboten.
-                </p>
-              </div>
-            </Reveal>
+            <section id="geschichte">
+              <Reveal>
+                <div style={{ maxWidth: '820px' }}>
+                  <span className="slabel">Unsere Geschichte</span>
+                  <h2 className="stitle" style={{ fontSize: '2rem', marginBottom: '1.4rem' }}>Seit 1994 in Magdeburg</h2>
+
+                  {/* Intro */}
+                  <div style={{
+                    background: '#0e0e0e',
+                    border: '1px solid rgba(201,162,39,0.18)',
+                    borderRadius: '18px',
+                    padding: '1.6rem 2rem',
+                    marginBottom: '2.5rem',
+                  }}>
+                    <p style={{
+                      fontFamily: 'Cormorant Garamond, serif',
+                      fontSize: '1.1rem',
+                      fontWeight: 300,
+                      color: 'rgba(255,255,255,0.78)',
+                      lineHeight: 1.8,
+                      margin: 0,
+                      fontStyle: 'italic',
+                    }}>
+                      Die Bibelgemeinde Magdeburg ist eine bibeltreue christliche Gemeinde, die 1994 gegründet wurde.
+                      Ihre Geschichte ist eine Geschichte des Glaubens – von kleinen Anfängen in einer Privatwohnung
+                      bis hin zu einer wachsenden, internationalen Gemeinde im Herzen Magdeburgs.
+                    </p>
+                  </div>
+
+                  {/* Timeline */}
+                  <div style={{ position: 'relative' }}>
+                    {/* Vertical line */}
+                    <div style={{
+                      position: 'absolute',
+                      left: '56px',
+                      top: '28px',
+                      bottom: '28px',
+                      width: '1px',
+                      background: 'linear-gradient(to bottom, transparent, rgba(201,162,39,0.3) 10%, rgba(201,162,39,0.3) 90%, transparent)',
+                    }} />
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                      {timeline.map((item, i) => (
+                        <div key={i} className="timeline-row">
+                          {/* Year + dot */}
+                          <div className="timeline-year-col">
+                            <span style={{
+                              fontFamily: 'Cormorant Garamond, serif',
+                              fontSize: '0.88rem',
+                              fontWeight: 600,
+                              color: '#c9a227',
+                              letterSpacing: '0.04em',
+                            }}>{item.year}</span>
+                            <div style={{
+                              position: 'absolute',
+                              right: '-7px',
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              width: '12px',
+                              height: '12px',
+                              borderRadius: '50%',
+                              background: '#080808',
+                              border: '2px solid rgba(201,162,39,0.6)',
+                              boxShadow: '0 0 8px rgba(201,162,39,0.3)',
+                              zIndex: 1,
+                            }} />
+                          </div>
+
+                          {/* Card */}
+                          <div style={{
+                            flex: 1,
+                            background: '#0e0e0e',
+                            border: '1px solid rgba(255,255,255,0.06)',
+                            borderRadius: '14px',
+                            padding: '1.2rem 1.4rem',
+                          }}>
+                            <h3 style={{
+                              fontFamily: 'Cormorant Garamond, serif',
+                              fontSize: '1.1rem',
+                              fontWeight: 600,
+                              color: '#fff',
+                              margin: '0 0 0.5rem',
+                              lineHeight: 1.3,
+                            }}>{item.title}</h3>
+                            <p style={{
+                              fontSize: '0.86rem',
+                              color: 'rgba(255,255,255,0.5)',
+                              lineHeight: 1.75,
+                              margin: 0,
+                              fontWeight: 300,
+                            }}>{item.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Today */}
+                  <div style={{
+                    marginTop: '2.5rem',
+                    background: 'rgba(201,162,39,0.06)',
+                    border: '1px solid rgba(201,162,39,0.2)',
+                    borderRadius: '16px',
+                    padding: '1.6rem 2rem',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '0.9rem' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a227" strokeWidth="1.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M3 12h18" />
+                      </svg>
+                      <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', fontWeight: 600, color: '#fff' }}>
+                        Heute
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.75, margin: '0 0 0.75rem', fontWeight: 300 }}>
+                      Die Bibelgemeinde Magdeburg versammelt sich bis heute regelmäßig sonntags um 10:00 Uhr und mittwochs
+                      um 18:00 Uhr in der Maxim-Gorki-Straße 31/37 in Magdeburg. Die Gottesdienste finden auf Deutsch statt,
+                      mit internationalen Mitgliedern aus verschiedenen Sprachräumen. Das Fundament bleibt dasselbe:
+                      die unfehlbare Heilige Schrift und Jesus Christus als einzigen Herrn und Retter.
+                    </p>
+                    <p style={{ fontSize: '0.77rem', color: 'rgba(201,162,39,0.55)', margin: 0, fontStyle: 'italic' }}>
+                      »Dein Wort ist meines Fußes Leuchte« – Psalm 119,105
+                    </p>
+                  </div>
+
+                  {/* Source note */}
+                  <p style={{
+                    marginTop: '2rem',
+                    fontSize: '0.72rem',
+                    color: 'rgba(255,255,255,0.2)',
+                    textAlign: 'center',
+                    fontStyle: 'italic',
+                  }}>
+                    Inhalt basierend auf der bisherigen Website der Bibelgemeinde Magdeburg.
+                  </p>
+                </div>
+              </Reveal>
+            </section>
           )}
 
           {activeTab === 'ziel' && (

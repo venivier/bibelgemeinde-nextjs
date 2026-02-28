@@ -271,7 +271,7 @@ function UploadPanel({ onUploaded }: { onUploaded: () => void }) {
   const [datum, setDatum] = useState('')
   const [bibelstelle, setBibelstelle] = useState('')
   const [beschreibung, setBeschreibung] = useState('')
-  const [kategorie, setKategorie] = useState<'Sonntag' | 'Mittwoch'>('Sonntag')
+  const [kategorie, setKategorie] = useState<'Sonntag' | 'Mittwoch' | 'Sonderveranstaltung'>('Sonntag')
   const [audioFile, setAudioFile] = useState<File | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [uploading, setUploading] = useState(false)
@@ -372,8 +372,8 @@ function UploadPanel({ onUploaded }: { onUploaded: () => void }) {
       </div>
 
       <div style={{ background: '#0e0e0e', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '18px', padding: '1.8rem' }}>
-        {/* 2-column grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem 1.2rem', marginBottom: '1rem' }}>
+        {/* 2-column grid (responsive via CSS module) */}
+        <div className={styles.formGrid}>
           <div>
             <label style={labelSt}>Titel *</label>
             <input type="text" value={titel} onChange={e => setTitel(e.target.value)}
@@ -398,12 +398,13 @@ function UploadPanel({ onUploaded }: { onUploaded: () => void }) {
             <label style={labelSt}>Kategorie *</label>
             <select
               value={kategorie}
-              onChange={e => setKategorie(e.target.value as 'Sonntag' | 'Mittwoch')}
+              onChange={e => setKategorie(e.target.value as 'Sonntag' | 'Mittwoch' | 'Sonderveranstaltung')}
               className={styles.input}
               style={{ cursor: 'pointer' }}
             >
               <option value="Sonntag">Sonntag</option>
               <option value="Mittwoch">Mittwoch</option>
+              <option value="Sonderveranstaltung">Sonderveranstaltung / Sonstiges</option>
             </select>
           </div>
         </div>
@@ -513,9 +514,9 @@ function MessagesPanel({ botschaften, onDelete }: { botschaften: Botschaft[]; on
                     <span style={{
                       display: 'inline-block', padding: '0.18rem 0.6rem', borderRadius: '20px',
                       fontSize: '0.7rem', fontWeight: 500,
-                      background: b.kategorie === 'Sonntag' ? 'rgba(201,162,39,0.12)' : 'rgba(148,163,184,0.1)',
-                      color: b.kategorie === 'Sonntag' ? '#c9a227' : '#94a3b8',
-                      border: `1px solid ${b.kategorie === 'Sonntag' ? 'rgba(201,162,39,0.3)' : 'rgba(148,163,184,0.2)'}`,
+                      background: b.kategorie === 'Sonntag' ? 'rgba(201,162,39,0.12)' : b.kategorie === 'Sonderveranstaltung' ? 'rgba(139,92,246,0.12)' : 'rgba(148,163,184,0.1)',
+                      color: b.kategorie === 'Sonntag' ? '#c9a227' : b.kategorie === 'Sonderveranstaltung' ? '#a78bfa' : '#94a3b8',
+                      border: `1px solid ${b.kategorie === 'Sonntag' ? 'rgba(201,162,39,0.3)' : b.kategorie === 'Sonderveranstaltung' ? 'rgba(139,92,246,0.3)' : 'rgba(148,163,184,0.2)'}`,
                     }}>{b.kategorie || '—'}</span>
                   </td>
                   <td style={{ padding: '0.82rem 0.75rem' }}><StatusBadge veroeffentlicht={b.veroeffentlicht} /></td>
@@ -541,6 +542,7 @@ type Panel = 'overview' | 'upload' | 'messages'
 export default function Dashboard() {
   const router = useRouter()
   const [panel, setPanel] = useState<Panel>('overview')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [botschaften, setBotschaften] = useState<Botschaft[]>([])
   const [loading, setLoading] = useState(true)
   const [toast, setToast] = useState('')
@@ -590,12 +592,18 @@ export default function Dashboard() {
     router.push('/admin')
   }
 
-  // Nav items config
   const navItems: { id: Panel; label: string; icon: React.ReactNode }[] = [
     { id: 'overview', label: 'Übersicht', icon: <IcoGrid /> },
     { id: 'upload', label: 'Botschaft hochladen', icon: <IcoUpload /> },
     { id: 'messages', label: 'Alle Botschaften', icon: <IcoList /> },
   ]
+
+  const activePanelLabel = navItems.find(n => n.id === panel)?.label ?? 'Dashboard'
+
+  const handleNavClick = (id: Panel) => {
+    setPanel(id)
+    setSidebarOpen(false)
+  }
 
   if (loading) {
     return (
@@ -622,14 +630,23 @@ export default function Dashboard() {
   return (
     <div style={{ minHeight: '100vh', background: '#080808', display: 'flex', fontFamily: 'Outfit, sans-serif' }}>
 
+      {/* ── Mobile sidebar overlay ───────────────────────────────────────────── */}
+      <div
+        className={`${styles.sidebarOverlay} ${sidebarOpen ? styles.sidebarOverlayVisible : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      />
+
       {/* ── Sidebar ─────────────────────────────────────────────────────────── */}
-      <aside style={{
-        width: '250px', flexShrink: 0,
-        background: '#0e0e0e',
-        borderRight: '1px solid rgba(255,255,255,0.07)',
-        display: 'flex', flexDirection: 'column',
-        position: 'sticky', top: 0, height: '100vh', overflowY: 'auto',
-      }}>
+      <aside
+        className={`${styles.sidebarDrawer} ${sidebarOpen ? styles.sidebarDrawerOpen : ''}`}
+        style={{
+          width: '250px', flexShrink: 0,
+          background: '#0e0e0e',
+          borderRight: '1px solid rgba(255,255,255,0.07)',
+          display: 'flex', flexDirection: 'column',
+          position: 'sticky', top: 0, height: '100vh', overflowY: 'auto',
+        }}
+      >
         {/* Logo */}
         <div style={{ padding: '1.8rem 1.5rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -651,21 +668,21 @@ export default function Dashboard() {
         {/* Nav */}
         <nav style={{ padding: '1rem 0.75rem', flex: 1, overflowY: 'auto', minHeight: 0, display: 'flex', flexDirection: 'column' }}>
           <button
-            onClick={() => setPanel('overview')}
+            onClick={() => handleNavClick('overview')}
             className={`${styles.navBtn} ${panel === 'overview' ? styles.navBtnActive : ''}`}
           >
             <IcoGrid />
             Übersicht
           </button>
           <button
-            onClick={() => setPanel('upload')}
+            onClick={() => handleNavClick('upload')}
             className={`${styles.navBtn} ${panel === 'upload' ? styles.navBtnActive : ''}`}
           >
             <IcoUpload />
             Botschaft hochladen
           </button>
           <button
-            onClick={() => setPanel('messages')}
+            onClick={() => handleNavClick('messages')}
             className={`${styles.navBtn} ${panel === 'messages' ? styles.navBtnActive : ''}`}
           >
             <IcoList />
@@ -726,6 +743,20 @@ export default function Dashboard() {
 
       {/* ── Main Content ────────────────────────────────────────────────────── */}
       <main style={{ flex: 1, overflowY: 'auto', minWidth: 0 }}>
+        {/* Mobile header bar */}
+        <div className={styles.mobileHeader}>
+          <button
+            className={styles.mobileMenuBtn}
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Menü öffnen"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <span className={styles.mobilePanelTitle}>{activePanelLabel}</span>
+        </div>
+
         {panel === 'overview' && <OverviewPanel botschaften={botschaften} />}
         {panel === 'upload' && (
           <UploadPanel onUploaded={async () => { await loadData() }} />

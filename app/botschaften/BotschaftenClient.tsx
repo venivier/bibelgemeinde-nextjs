@@ -3,13 +3,21 @@
 import { useState } from 'react'
 import BotschaftItem, { type BotschaftData } from './BotschaftItem'
 
-type Filter = 'alle' | 'Sonntag' | 'Mittwoch'
+type Filter = 'alle' | 'Sonntag' | 'Mittwoch' | 'Sonderveranstaltung'
 
 const tabs: { id: Filter; label: string }[] = [
   { id: 'alle', label: 'Alle' },
   { id: 'Sonntag', label: 'Sonntag' },
   { id: 'Mittwoch', label: 'Mittwoch' },
+  { id: 'Sonderveranstaltung', label: 'Sonderveranstaltungen' },
 ]
+
+const emptyLabel: Record<Filter, string> = {
+  alle: 'Noch keine Botschaften vorhanden.',
+  Sonntag: 'Noch keine Sonntags-Botschaften vorhanden.',
+  Mittwoch: 'Noch keine Mittwochs-Botschaften vorhanden.',
+  Sonderveranstaltung: 'Noch keine Sonderveranstaltungen vorhanden.',
+}
 
 export default function BotschaftenClient({ botschaften }: { botschaften: BotschaftData[] }) {
   const [filter, setFilter] = useState<Filter>('alle')
@@ -40,6 +48,7 @@ export default function BotschaftenClient({ botschaften }: { botschaften: Botsch
                 cursor: 'pointer',
                 transition: 'all 0.2s',
                 letterSpacing: '0.03em',
+                minHeight: '44px',
               }}
             >{t.label}</button>
           )
@@ -50,11 +59,7 @@ export default function BotschaftenClient({ botschaften }: { botschaften: Botsch
       {filtered.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '4rem 0', color: 'rgba(255,255,255,0.25)', fontFamily: 'Outfit, sans-serif' }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem', opacity: 0.3 }}>♪</div>
-          <p style={{ fontSize: '0.9rem' }}>
-            {filter === 'alle'
-              ? 'Noch keine Botschaften vorhanden.'
-              : `Noch keine ${filter}-Botschaften vorhanden.`}
-          </p>
+          <p style={{ fontSize: '0.9rem' }}>{emptyLabel[filter]}</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

@@ -1398,4 +1398,83 @@ footer {
   .hright .btn-gold {
     display: none;
   }
+
+  /* Hide YouTube pill on mobile; shown inside nav instead */
+  .yt-link {
+    display: none;
+  }
+
+  /* Smaller section padding on mobile */
+  .section {
+    padding: 4rem 1.25rem;
+  }
+
+  .values {
+    padding: 4rem 1.25rem;
+  }
+
+  .banner {
+    padding: 4rem 1.25rem;
+  }
+
+  /* Tab bar scroll on narrow screens */
+  .tab-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0;
+    scrollbar-width: none;
+  }
+
+  .tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex-shrink: 0;
+  }
+}
+
+/* YouTube link in mobile nav (hidden on desktop) */
+.yt-nav-item {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .yt-nav-item {
+    display: block;
+  }
+}
+
+/* ── TIMELINE (Über uns Geschichte) ── */
+.timeline-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.timeline-year-col {
+  flex-shrink: 0;
+  width: 56px;
+  text-align: right;
+  padding-top: 1.2rem;
+  position: relative;
+}
+
+@media (max-width: 520px) {
+  .timeline-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-year-col {
+    width: auto;
+    text-align: left;
+    padding-top: 0;
+    padding-left: 0;
+  }
+
+  .timeline-year-col > div {
+    display: none; /* hide dot on very small screens */
+  }
 }

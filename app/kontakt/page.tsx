@@ -29,7 +29,7 @@ export default function KontaktPage() {
                   </svg>
                 </div>
                 <h3>Anfahrt</h3>
-                <p>Maxim-Gorki-Straße 31–37<br />39108 Magdeburg<br /><br />Klicken für Details &amp; Karte →</p>
+                <p>Maxim-Gorki-Straße 31/37<br />39108 Magdeburg<br /><br />Klicken für Details &amp; Karte →</p>
               </Link>
 
               <div className="kontakt-card">
